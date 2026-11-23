@@ -1,0 +1,788 @@
+/*
+ * Experimental "lit surfaces" style (see moth-ui-lit-surfaces.md at the repo root).
+ * Docs-only. Loaded by experimental/+layout.svelte. Nothing here touches the official `m-` classes:
+ * the experimental components in ./ui render unprefixed classes, and every rule is scoped under
+ * `.experimental` (the layout's wrapper) so they can't leak into other pages after a client navigation.
+ */
+
+/* ---------- Surface tokens ---------- */
+
+/* Same pattern as tokens.css: declared on every [data-theme] so a nested theme resolves them against its own scales */
+:root,
+[data-theme] {
+    /* background-image of top-level containers (cards, tables): a see-through gradient over the fill, lighter at the top */
+    --m-gradient-surface: linear-gradient(to bottom, color-mix(in srgb, #fff 4%, transparent), transparent 160px);
+    /* box-shadow of top-level containers: a 1px highlight along the top edge */
+    --m-shadow-surface: inset 0 1px 0 color-mix(in srgb, #fff 7%, transparent);
+    /* background-color inside a container (table header): the see-through version of --m-color-surface-raised,
+       one step up from whatever it sits on (gray-12 is light in dark mode and dark in light mode) */
+    --m-color-surface-raised-tint: color-mix(in srgb, var(--m-gray-12) 4%, transparent);
+    /* box-shadow of form fields at rest. A field is set into the surface, so under the light from above its top lip
+       casts a soft shadow inside it, and its bottom lip catches a little light. (Raised things do the opposite.) */
+    --m-shadow-field:
+        inset 0 2px 4px color-mix(in srgb, #000 70%, transparent),
+        inset 0 -1px 0 color-mix(in srgb, #fff 6%, transparent);
+    /* Soft status fills (banners, badges): what their top blends towards. In dark mode a brighter step (7) of the
+       same scale: mixing white into a dark, saturated color greys it out (warning turned olive). */
+    --m-color-info-weak-highlight: var(--m-info-7);
+    --m-color-warning-weak-highlight: var(--m-warning-7);
+    --m-color-danger-weak-highlight: var(--m-danger-7);
+    --m-color-success-weak-highlight: var(--m-success-7);
+    /* How much black the bottom of a soft status fill takes */
+    --m-weak-shade: 6%;
+}
+
+/* Light theme: white can't get lighter, so the light shows the other way round. The top stays white and the
+   card settles slightly darker towards the bottom, and the shadow it casts downwards gives the depth that a
+   highlight gives in dark mode. */
+[data-theme="light"] {
+    --m-gradient-surface: linear-gradient(to bottom, transparent 40%, color-mix(in srgb, var(--m-gray-12) 2.5%, transparent));
+    --m-shadow-surface:
+        inset 0 -1px 0 color-mix(in srgb, var(--m-gray-12) 5%, transparent),
+        0 1px 2px color-mix(in srgb, var(--m-gray-12) 6%, transparent),
+        0 6px 16px -6px color-mix(in srgb, var(--m-gray-12) 10%, transparent);
+    --m-color-surface-raised-tint: color-mix(in srgb, var(--m-gray-12) 9%, transparent);
+    /* A white bottom lip doesn't show on a white field, so only the top shadow */
+    --m-shadow-field: inset 0 1px 2px color-mix(in srgb, var(--m-gray-12) 10%, transparent);
+    /* Light pastels brighten cleanly with white */
+    --m-color-info-weak-highlight: #fff;
+    --m-color-warning-weak-highlight: #fff;
+    --m-color-danger-weak-highlight: #fff;
+    --m-color-success-weak-highlight: #fff;
+    /* None: black greys out a pastel the way white greys out a dark color */
+    --m-weak-shade: 0%;
+}
+
+/* ---------- Badge ---------- */
+
+/* Soft status badges are small banners: their top blends towards their own color. Strong status badges are small
+   solid fills, lit like a primary button. Neutral badges (soft and strong) stay flat: a gray pill with a gradient is
+   the YouTube button. */
+.experimental .badge {
+    /* The solid color the gradient is built from, and the color a soft badge's top blends towards */
+    --m-badge-fill: var(--m-color-neutral-weak);
+    --m-badge-highlight: transparent;
+    /* Flat unless a variant below lights it */
+    --m-badge-gradient: none;
+    --m-badge-shadow: 0 0 transparent;
+    /* What a strong badge's bottom darkens towards */
+    --m-badge-shade: #000;
+
+    display: flex;
+    align-items: center;
+    gap: var(--m-space-xs);
+    width: min-content;
+    height: min-content;
+    font-family: var(--m-font);
+    font-size: var(--m-font-size-s);
+    font-weight: var(--m-font-weight-regular);
+    letter-spacing: var(--m-letter-spacing-s);
+    background-color: var(--m-badge-fill);
+    background-image: var(--m-badge-gradient);
+    box-shadow: var(--m-badge-shadow);
+    color: var(--m-color-text-on-neutral-weak);
+    border-radius: var(--m-radius-full);
+    padding: var(--m-space-xs) var(--m-space-s);
+    border: 2px solid var(--m-color-border-neutral-weak);
+    white-space: nowrap;
+}
+
+/* Soft status badges: the banner's gradient. No top highlight: they keep their border (soft status components have
+   one), and a highlight inside it read as a second, lighter outline. The border already marks the edge. */
+.experimental .badge:is(.is-info, .is-warning, .is-danger, .is-success) {
+    --m-badge-gradient: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--m-badge-fill) 85%, var(--m-badge-highlight)),
+        var(--m-badge-fill) 60%,
+        color-mix(in srgb, var(--m-badge-fill), #000 var(--m-weak-shade))
+    );
+}
+
+/* Strong status badges: lit like a primary button. The lighter part ends by 20% of the height, before the label
+   (white text needs the fill behind it for 4.5:1). No border: the fill is the edge, so the highlight is on the very
+   top; the padding grows by the border's 2px to keep the size. */
+.experimental .badge.is-strong:is(.is-info, .is-warning, .is-danger, .is-success) {
+    --m-badge-gradient: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--m-badge-fill) 85%, #fff),
+        var(--m-badge-fill) 20%,
+        color-mix(in srgb, var(--m-badge-fill) 88%, var(--m-badge-shade))
+    );
+    --m-badge-shadow: inset 0 1px 0 color-mix(in srgb, #fff 22%, transparent);
+    border: none;
+    padding: calc(var(--m-space-xs) + 2px) calc(var(--m-space-s) + 2px);
+}
+
+.experimental .badge.is-strong {
+    --m-badge-fill: var(--m-color-neutral);
+    border-color: var(--m-color-neutral);
+    color: var(--m-color-text-on-neutral);
+}
+
+.experimental .badge.is-danger {
+    --m-badge-fill: var(--m-color-danger-weak);
+    --m-badge-highlight: var(--m-color-danger-weak-highlight);
+    border-color: var(--m-color-border-danger-weak);
+    color: var(--m-color-text-on-danger-weak);
+}
+
+.experimental .badge.is-danger.is-strong {
+    --m-badge-fill: var(--m-color-danger);
+    color: var(--m-color-text-on-danger);
+}
+
+.experimental .badge.is-warning {
+    --m-badge-fill: var(--m-color-warning-weak);
+    --m-badge-highlight: var(--m-color-warning-weak-highlight);
+    border-color: var(--m-color-border-warning-weak);
+    color: var(--m-color-text-on-warning-weak);
+}
+
+.experimental .badge.is-warning.is-strong {
+    --m-badge-fill: var(--m-color-warning);
+    /* Black turns bright yellow mustard; its own deep amber keeps it golden */
+    --m-badge-shade: var(--m-warning-11);
+    color: var(--m-color-text-on-warning);
+}
+
+.experimental .badge.is-success {
+    --m-badge-fill: var(--m-color-success-weak);
+    --m-badge-highlight: var(--m-color-success-weak-highlight);
+    border-color: var(--m-color-border-success-weak);
+    color: var(--m-color-text-on-success-weak);
+}
+
+.experimental .badge.is-success.is-strong {
+    --m-badge-fill: var(--m-color-success);
+    color: var(--m-color-text-on-success);
+}
+
+.experimental .badge.is-info {
+    --m-badge-fill: var(--m-color-info-weak);
+    --m-badge-highlight: var(--m-color-info-weak-highlight);
+    border-color: var(--m-color-border-info-weak);
+    color: var(--m-color-text-on-info-weak);
+}
+
+.experimental .badge.is-info.is-strong {
+    --m-badge-fill: var(--m-color-info);
+    color: var(--m-color-text-on-info);
+}
+
+/* ---------- Banner ---------- */
+
+/* A top-level container with a color: lit like a card, but the light is tinted with its own color. No border, so
+   the highlight can be a plain inset box-shadow (it sits on the very top edge). */
+.experimental .banner {
+    /* The solid color the gradient is built from, and the color its top blends towards. Variants change only these. */
+    --m-banner-fill: var(--m-color-info-weak);
+    --m-banner-highlight: var(--m-color-info-weak-highlight);
+    /* background-image: lighter at the top, the fill by 60%, slightly darker at the bottom (dark mode only) */
+    --m-banner-gradient: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--m-banner-fill) 85%, var(--m-banner-highlight)),
+        var(--m-banner-fill) 60%,
+        color-mix(in srgb, var(--m-banner-fill), #000 var(--m-weak-shade))
+    );
+    /* box-shadow: a 1px highlight along the top edge */
+    --m-banner-shadow: inset 0 1px 0 color-mix(in srgb, var(--m-banner-highlight) 45%, transparent);
+
+    display: flex;
+    align-items: center;
+    gap: var(--m-space-s);
+    padding: var(--m-space-m);
+    border: none;
+    border-radius: var(--m-radius);
+    background-color: var(--m-banner-fill);
+    background-image: var(--m-banner-gradient);
+    box-shadow: var(--m-banner-shadow);
+    color: var(--m-color-text);
+    font-family: var(--m-font);
+    font-size: var(--m-font-size-m);
+    line-height: var(--m-line-height-m);
+    letter-spacing: var(--m-letter-spacing-m);
+}
+
+.experimental .banner-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.experimental .banner.is-info,
+.experimental .banner.is-info .m-link {
+    color: var(--m-color-text-on-info-weak);
+}
+
+.experimental .banner.is-warning {
+    --m-banner-fill: var(--m-color-warning-weak);
+    --m-banner-highlight: var(--m-color-warning-weak-highlight);
+}
+
+.experimental .banner.is-warning,
+.experimental .banner.is-warning .m-link {
+    color: var(--m-color-text-on-warning-weak);
+}
+
+.experimental .banner.is-danger {
+    --m-banner-fill: var(--m-color-danger-weak);
+    --m-banner-highlight: var(--m-color-danger-weak-highlight);
+}
+
+.experimental .banner.is-danger,
+.experimental .banner.is-danger .m-link {
+    color: var(--m-color-text-on-danger-weak);
+}
+
+.experimental .banner.is-success {
+    --m-banner-fill: var(--m-color-success-weak);
+    --m-banner-highlight: var(--m-color-success-weak-highlight);
+}
+
+.experimental .banner.is-success,
+.experimental .banner.is-success .m-link {
+    color: var(--m-color-text-on-success-weak);
+}
+
+/* ---------- Button ---------- */
+
+/* The official .m-button rules with the lit fill merged in. Primary and danger get a gradient; secondary, tertiary
+   and disabled stay flat (a gray filled pill with a gradient is the YouTube button). */
+
+.experimental .button-wrapper {
+    position: relative;
+    width: max-content;
+    height: fit-content;
+    cursor: pointer;
+}
+
+.experimental .button-wrapper.is-expanded {
+    width: 100%;
+}
+
+.experimental .button-wrapper:has(.button:disabled) {
+    cursor: not-allowed;
+}
+
+.experimental .button {
+    /* The solid color the gradient is built from. Variants change only this. */
+    --m-button-fill: var(--m-accent-9);
+    /* background-image: lighter along the top, the plain fill by 25% of the height (where the label's line starts,
+       so white text keeps 4.5:1), then darker towards the bottom */
+    --m-button-gradient: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--m-button-fill) 85%, #fff),
+        var(--m-button-fill) 25%,
+        color-mix(in srgb, var(--m-button-fill) 88%, #000)
+    );
+    /* box-shadow at rest: a 1px highlight along the top edge (drawn by ::after, see below) */
+    --m-button-shadow: inset 0 1px 0 color-mix(in srgb, #fff 22%, transparent);
+    /* Hover is more light shining on the button, not the official lamp glow: the same light from above, brighter.
+       It fades in all at once. The label stays white, so the light is strong along the top and eases off before it
+       reaches the label (white text needs the fill behind it to stay dark enough for 4.5:1). */
+    /* background of the lit layer (::before): light from above, brightest at the top center, gone before the label */
+    --m-button-lit-background: radial-gradient(
+        150% 25% at 50% 0%,
+        color-mix(in srgb, #fff 45%, transparent),
+        color-mix(in srgb, #fff 12%, transparent) 50%,
+        transparent
+    );
+    /* box-shadow of the highlight (::after) when lit: the top edge catches more light */
+    --m-button-lit-shadow: inset 0 1px 0 color-mix(in srgb, #fff 60%, transparent);
+    --m-button-lit-color: var(--m-color-text-on-accent);
+    /* A small, soft halo instead of the official wide glow */
+    --m-button-halo: 0 2px 12px -4px color-mix(in srgb, var(--m-accent-9) 60%, transparent);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--m-space-s);
+    font-family: var(--m-font);
+    font-size: var(--m-font-size-m);
+    font-weight: var(--m-font-weight-regular);
+    letter-spacing: var(--m-letter-spacing-m);
+    line-height: var(--m-line-height-m);
+    height: var(--m-control-height);
+    width: max-content;
+    padding-block: 0;
+    padding-inline: var(--m-space-m);
+    color: var(--m-color-text-on-accent);
+    text-decoration: none;
+    cursor: pointer;
+    /* Transparent border with the gradient painted under it (border-box): a solid border would show as a ring
+       around the darker bottom of the gradient */
+    border: 1px solid transparent;
+    border-radius: var(--m-radius-full);
+    background-color: var(--m-button-fill);
+    background-image: var(--m-button-gradient);
+    background-origin: border-box;
+    position: relative;
+    /* Makes the z-index: -1 light below paint above the button's own background */
+    isolation: isolate;
+    transition: box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    will-change: transform;
+}
+
+/* The lit layer: fades in over the gradient, below the label */
+.experimental .button::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--m-button-lit-background);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+/* The highlight. An inset box-shadow on the button itself is drawn inside the (transparent) border, so it
+   would sit 1px below the top edge. This layer covers the border too, so the highlight is on the very top. */
+.experimental .button::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    box-shadow: var(--m-button-shadow);
+    transition: box-shadow 0.2s ease;
+    pointer-events: none;
+}
+
+.experimental .button.is-expanded {
+    width: 100%;
+}
+
+.experimental .button.is-size-l {
+    font-size: var(--m-font-size-l);
+    height: auto;
+    padding: var(--m-space-s) var(--m-space-l);
+}
+
+.experimental .button.is-danger {
+    --m-button-fill: var(--m-color-danger);
+    --m-button-lit-color: var(--m-color-text-on-danger);
+    --m-button-halo: 0 2px 12px -4px color-mix(in srgb, var(--m-danger-9) 60%, transparent);
+    color: var(--m-color-text-on-danger);
+}
+
+/* Flat variants: every variant without a gradient turns off the gradient and the highlight. They keep the
+   official hover (secondary's outline turns the text color and glows, tertiary gets a gray pill). */
+.experimental .button.is-secondary {
+    --m-button-gradient: none;
+    --m-button-shadow: 0 0 transparent;
+    --m-button-lit-background: none;
+    --m-button-lit-shadow: 0 0 transparent;
+    --m-button-lit-color: var(--m-color-text);
+    --m-button-halo: 0 0 20px -4px color-mix(in srgb, var(--m-accent-9) 60%, transparent);
+    background-color: var(--m-color-background);
+    border-color: var(--m-gray-7);
+    color: var(--m-color-text);
+}
+
+.experimental .button.is-tertiary {
+    --m-button-gradient: none;
+    --m-button-shadow: 0 0 transparent;
+    --m-button-lit-background: var(--m-gray-4);
+    --m-button-lit-shadow: 0 0 transparent;
+    --m-button-lit-color: var(--m-color-text);
+    /* A no-op shadow rather than none, so the focus shadow list stays valid */
+    --m-button-halo: 0 0 0 transparent;
+    background-color: transparent;
+    color: var(--m-color-text-weak);
+}
+
+.experimental .button:disabled {
+    --m-button-gradient: none;
+    --m-button-shadow: 0 0 transparent;
+    background-color: var(--m-gray-4);
+    border-color: var(--m-gray-3);
+    color: var(--m-color-text-weaker);
+    cursor: not-allowed;
+}
+
+.experimental .button.is-secondary:disabled {
+    background-color: var(--m-gray-1);
+    border-color: var(--m-gray-3);
+    color: var(--m-gray-4);
+}
+
+.experimental .button.is-tertiary:disabled {
+    background-color: var(--m-color-background);
+    border-color: transparent;
+    color: var(--m-gray-4);
+}
+
+.experimental .button.is-danger:disabled {
+    background-color: var(--m-danger-2);
+    border-color: var(--m-danger-2);
+    color: var(--m-gray-4);
+}
+
+/* Lit state: on hover and on keyboard focus */
+.experimental .button:focus-visible {
+    outline: 2px solid transparent; /* shows in forced-colors mode, where box-shadows are dropped */
+    color: var(--m-button-lit-color);
+    box-shadow: var(--m-shadow-focus), var(--m-button-halo);
+    transform: scale(1.03);
+}
+
+.experimental .button:focus-visible::before {
+    opacity: 1;
+}
+
+.experimental .button:focus-visible::after {
+    box-shadow: var(--m-button-lit-shadow);
+}
+
+.experimental .button.is-expanded:focus-visible {
+    transform: scale(1.01);
+}
+
+.experimental .button.is-secondary:focus-visible {
+    border-color: var(--m-color-text);
+}
+
+@media (pointer: fine) {
+    .experimental .button:not(:disabled):hover {
+        color: var(--m-button-lit-color);
+        box-shadow: var(--m-button-halo);
+        transform: scale(1.03);
+    }
+
+    .experimental .button:not(:disabled):hover::before {
+        opacity: 1;
+    }
+
+    .experimental .button:not(:disabled):hover::after {
+        box-shadow: var(--m-button-lit-shadow);
+    }
+
+    .experimental .button.is-expanded:not(:disabled):hover {
+        transform: scale(1.01);
+    }
+
+    .experimental .button.is-secondary:not(:disabled):hover {
+        border-color: var(--m-color-text);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .experimental .button,
+    .experimental .button::before,
+    .experimental .button::after {
+        transition: none;
+    }
+
+    .experimental .button:focus-visible,
+    .experimental .button:hover {
+        transform: none;
+    }
+}
+
+/* ---------- Input ---------- */
+
+/* The official field, set into the surface: at rest it shows the shadow its top lip casts (--m-shadow-field). On
+   focus it lights up instead: the shadow goes, the fill lifts a step and it gets the focus glow, as in the official
+   field. Everything else (shape, border, padding, states) is the official field. */
+.experimental .input-wrapper {
+    position: relative;
+    width: max-content;
+    box-sizing: border-box;
+}
+
+.experimental .input-wrapper.is-expanded {
+    width: 100%;
+}
+
+.experimental .input {
+    padding: var(--m-space-s) var(--m-space-s);
+    border: 1px solid var(--m-color-border);
+    border-radius: var(--m-radius);
+    font-family: var(--m-font);
+    font-size: var(--m-font-size-m);
+    font-weight: var(--m-font-weight-regular);
+    letter-spacing: var(--m-letter-spacing-m);
+    background-color: var(--m-color-surface);
+    box-shadow: var(--m-shadow-field);
+    color: var(--m-color-text);
+    width: 16rem;
+    height: var(--m-control-height);
+    box-sizing: border-box;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.experimental .input.is-expanded {
+    width: 100%;
+}
+
+.experimental .input:focus {
+    outline: none;
+}
+
+.experimental .input:focus-visible,
+.experimental .input:focus-visible:hover {
+    border-color: var(--m-color-border-control-focus);
+    background-color: var(--m-color-surface-raised);
+    outline: 2px solid transparent; /* shows in forced-colors mode, where box-shadows are dropped */
+    box-shadow: var(--m-shadow-focus);
+}
+
+.experimental .input.is-danger,
+.experimental .input.is-danger:focus-visible {
+    border-color: var(--m-color-danger);
+}
+
+/* Disabled: flat, so it recedes */
+.experimental .input:disabled {
+    background-color: transparent;
+    border-color: var(--m-gray-3);
+    box-shadow: none;
+    color: var(--m-color-text-weaker);
+    cursor: not-allowed;
+}
+
+.experimental .input::placeholder {
+    color: var(--m-color-text-weakest);
+}
+
+.experimental .input.is-align-end {
+    text-align: end;
+}
+
+.experimental .input-prefix,
+.experimental .input-suffix {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 var(--m-space-s);
+    color: var(--m-color-text-weaker);
+    font-family: var(--m-font);
+    font-size: var(--m-font-size-m);
+    font-weight: var(--m-font-weight-regular);
+    letter-spacing: var(--m-letter-spacing-m);
+    user-select: none;
+    pointer-events: none;
+}
+
+.experimental .input-prefix {
+    left: 0;
+}
+
+.experimental .input-suffix {
+    right: 0;
+}
+
+@media (pointer: fine) {
+    .experimental .input:hover {
+        border-color: var(--m-color-border-control-hover);
+    }
+
+    .experimental .input:disabled:hover {
+        border-color: var(--m-gray-3);
+    }
+
+    .experimental .input.is-danger:hover {
+        border-color: var(--m-color-danger);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .experimental .input {
+        transition: none;
+    }
+}
+
+.experimental .label-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--m-space-s);
+}
+
+.experimental .label-wrapper > .m-text {
+    margin-block-start: calc(var(--m-space-xs) - var(--m-space-s));
+}
+
+.experimental .label {
+    font-family: var(--m-font);
+    font-size: var(--m-font-size-m);
+    font-weight: var(--m-font-weight-regular);
+    letter-spacing: var(--m-letter-spacing-m);
+    color: var(--m-color-text);
+    display: flex;
+    align-items: center;
+    gap: var(--m-space-xs);
+}
+
+.experimental .required {
+    font-family: var(--m-font);
+    font-size: var(--m-font-size-xl);
+    color: var(--m-color-danger);
+    height: 18px;
+}
+
+/* ---------- Card ---------- */
+
+.experimental .card {
+    background-color: var(--m-color-surface);
+    background-image: var(--m-gradient-surface);
+    box-shadow: var(--m-shadow-surface);
+    border: none;
+    border-radius: var(--m-radius);
+}
+
+/* Opt-out, e.g. a card nested in a card (one light source per container) */
+.experimental .card.is-flat {
+    background-image: none;
+    box-shadow: none;
+}
+
+.experimental .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--m-space-m);
+    border-block-end: 1px solid var(--m-color-border);
+}
+
+.experimental .card-content {
+    padding: var(--m-space-m);
+    height: calc(100% - var(--m-space-xl));
+}
+
+.experimental .card.has-space-none .card-content,
+.experimental .card.has-space-none .card-header {
+    padding: 0;
+}
+
+.experimental .card.has-space-m .card-content,
+.experimental .card.has-space-m .card-header {
+    padding: var(--m-space-m);
+}
+
+.experimental .card.has-space-l .card-content,
+.experimental .card.has-space-l .card-header {
+    padding: var(--m-space-l);
+}
+
+/* ---------- Table ---------- */
+
+/* The wrapper is the top-level container, so it gets the gradient and shadow; the header gets the raised tint */
+.experimental .table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    background-color: var(--m-color-surface);
+    background-image: var(--m-gradient-surface);
+    box-shadow: var(--m-shadow-surface);
+    border-radius: var(--m-radius);
+}
+
+.experimental .table {
+    table-layout: auto;
+    width: 100%;
+    font-family: var(--m-font);
+    font-weight: var(--m-font-weight-regular);
+    border-collapse: collapse;
+    overflow: scroll;
+}
+
+.experimental .table-caption {
+    text-align: start;
+    font-family: var(--m-font);
+    font-weight: var(--m-font-weight-bold);
+    font-size: var(--m-font-size-2xl);
+    letter-spacing: var(--m-letter-spacing-2xl);
+    padding: var(--m-space-m);
+}
+
+.experimental .table-header {
+    text-align: start;
+    padding: var(--m-space-m);
+    font-family: var(--m-font);
+    font-weight: var(--m-font-weight-regular);
+    font-size: var(--m-font-size-m);
+    letter-spacing: var(--m-letter-spacing-m);
+    border-block-end: 1px solid var(--m-color-border);
+    /* See-through, so it stays one step above the lit wrapper all the way down the gradient.
+       If the header ever becomes sticky, use the solid equivalent:
+       linear-gradient(var(--m-color-surface-raised-tint), var(--m-color-surface-raised-tint)), var(--m-color-surface) */
+    background-color: var(--m-color-surface-raised-tint);
+}
+
+.experimental .table-cell {
+    text-align: start;
+    font-family: var(--m-font);
+    font-weight: var(--m-font-weight-regular);
+    font-size: var(--m-font-size-m);
+    font-variant-numeric: tabular-nums lining-nums;
+    padding: var(--m-space-m);
+    border-block-end: 1px solid var(--m-color-border);
+}
+
+.experimental .table-body .table-row:last-child .table-cell {
+    border-block-end-color: transparent;
+}
+
+.experimental .table.is-striped .table-body .table-row:nth-child(even) {
+    background-color: color-mix(in srgb, var(--m-color-text) 5%, transparent);
+}
+
+.experimental .table.is-interactive .table-body .table-row {
+    transition: background-color 0.2s ease;
+}
+
+.experimental .table-cell.is-align-start,
+.experimental .table-header.is-align-start {
+    text-align: start;
+}
+
+.experimental .table-cell.is-align-center,
+.experimental .table-header.is-align-center {
+    text-align: center;
+}
+
+.experimental .table-cell.is-align-end,
+.experimental .table-header.is-align-end {
+    text-align: end;
+}
+
+.experimental .table-cell.is-align-center > .m-text,
+.experimental .table-header.is-align-center > .m-text {
+    margin-inline: auto;
+}
+
+.experimental .table-cell.is-align-end > .m-text,
+.experimental .table-header.is-align-end > .m-text {
+    margin-inline-start: auto;
+}
+
+.experimental .table-cell.is-truncated {
+    max-inline-size: 0;
+    inline-size: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (pointer: fine) {
+    .experimental .table.is-interactive .table-body .table-row:hover {
+        background-color: color-mix(in srgb, var(--m-color-text) 8%, transparent);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .experimental .table.is-interactive .table-body .table-row {
+        transition: none;
+    }
+}
+
+/* ---------- More contrast ---------- */
+
+/* Surfaces get an edge, as the official card and table do. border-box keeps the light under the border (no ring). */
+@media (prefers-contrast: more) {
+    .experimental .card,
+    .experimental .table-wrapper {
+        border: 1px solid var(--m-color-border);
+        background-origin: border-box;
+    }
+}
