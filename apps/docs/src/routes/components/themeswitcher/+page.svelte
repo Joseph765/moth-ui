@@ -75,7 +75,7 @@ export default function Example() {
 
 <Flex direction="column" gap="2xl">
     <Flex direction="column">
-        <Text size="3xl" weight="black" as="h1">ThemeSwitcher</Text>
+        <Text size="3xl" weight="black" as="h1">Theme Switcher</Text>
         <Text size="xl" variant="weak">A small switch that lets people choose the system, light or dark theme, and remembers their choice.</Text>
     </Flex>
 

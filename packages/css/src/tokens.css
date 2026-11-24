@@ -337,7 +337,7 @@
 	--m-color-border-danger-weak: var(--m-danger-6);
 	--m-color-border-success-weak: var(--m-success-6);
 
-	--m-color-highlight: var(--m-accent-5);
+	--m-color-highlight: var(--m-accent-7);
 
 	--m-color-text-weaker: color-mix(in srgb, var(--m-gray-10) 50%, var(--m-gray-11)); /* 4.6:1 on white */
 	--m-color-text-weakest: var(--m-gray-9); /* 3.3:1, placeholders */

@@ -5,6 +5,7 @@
     import components from "./components/components.json";
     import MothLogo from "./MothLogo.svelte";
     import FrameworkSwitcher from "./FrameworkSwitcher.svelte";
+    import { animateCodeOnSwitch } from "./framework.svelte.js";
     import { version } from "../../../../packages/svelte/package.json";
 
     import { Blocks, Compass, Layers, Rocket } from "@jis3r/icons"; // Compass: the hidden Guidelines group
@@ -27,6 +28,8 @@
 
     /** @type { boolean } */
     let open = $state(false);
+
+    animateCodeOnSwitch();
 </script>
 
 
@@ -70,7 +73,7 @@
             {#snippet icon(animate)}<Blocks {animate} />{/snippet}
             <NavGroupItem href="/components" active={page.url.pathname === "/components"} onclick={() => open = false}>All Components</NavGroupItem>
             {#each components as component}
-                <NavGroupItem href="/components/{component.name.toLocaleLowerCase()}" active={page.url.pathname === '/components/' + component.name.toLocaleLowerCase()} onclick={() => open = false}>{component.name}</NavGroupItem>
+                <NavGroupItem href="/components/{component.name.toLocaleLowerCase()}" active={page.url.pathname === '/components/' + component.name.toLocaleLowerCase()} onclick={() => open = false}>{component.label ?? component.name}</NavGroupItem>
             {/each}
         </NavGroup>
         {#snippet footer()}
@@ -100,5 +103,16 @@
         display: flex;
         align-items: center;
         gap: var(--m-space-s);
+    }
+
+    /* Code that just switched framework eases in like a tab panel (animateCodeOnSwitch in framework.svelte.js) */
+    :global(.is-framework-switched) {
+        animation: m-tab-panel-in 0.2s ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :global(.is-framework-switched) {
+            animation: none;
+        }
     }
 </style>

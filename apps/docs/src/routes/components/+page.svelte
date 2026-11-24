@@ -11,7 +11,11 @@
 
     let componentResults = $derived(
         searchTerm
-            ? components.filter((component) => component.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()))
+            ? components.filter((component) =>
+                  [component.name, component.label ?? ""].some((text) =>
+                      text.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+                  )
+              )
             : components
     );
 </script>
@@ -37,7 +41,7 @@
                     </div>
                     <div class="component-info">
                         <div class="component-name">
-                            <Text as="h3" weight="bold" size="l">{component.name}</Text>
+                            <Text as="h3" weight="bold" size="l">{component.label ?? component.name}</Text>
                             <span class="arrow" aria-hidden="true">→</span>
                         </div>
                         <Text measure="none" variant="weak">{component.description}</Text>

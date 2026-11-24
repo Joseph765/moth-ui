@@ -202,7 +202,8 @@ We're simplifying the documentation site. Goals so far:
   no changeset; a CSS-only change picks both packages. Recently removed on purpose: the `Icon` component,
   `Container`'s `id` prop, and the Card `ghost` and Button `ghost` variants.
 - **`src/routes/components/components.json`** drives the nav, the All Components cards, the landing showcase,
-  the sitemap and each component page's SEO. Card previews are static HTML. Use `<span>`/`<div>`, never
+  the sitemap and each component page's SEO. `name` is the component name and builds the URL; an optional
+  `label` is what the nav, cards and page titles show instead (two words: "Copy Code", "Theme Switcher"). Card previews are static HTML. Use `<span>`/`<div>`, never
   `<button>`/`<a>`, because they sit inside a link. Close every tag (an unclosed `<svg>` broke hydration once).
 - **Page-level `Container`s** on the docs site use `align="center"`.
 - **Framework switcher and version:** next to the logo (desktop and the mobile header) is a "Svelte" chip with a
@@ -233,6 +234,10 @@ Every code example on the docs site exists in Svelte and React and follows the f
   one with `forFramework()`, highlights it ("xml" for Svelte, "jsx" for React) and re-highlights when the switcher
   changes. Name examples in the page script (`const example1 = { svelte: `...`, react: `...` }`, or descriptive
   names like `stylesCode`); no inline template strings in markup.
+- **Switch animation:** when the framework changes, every `<code>` whose content changed replays the Tabs panel
+  ease-in (`m-tab-panel-in`), off with reduced motion. It's automatic (`animateCodeOnSwitch()` in
+  `framework.svelte.js`, called from `+layout.svelte`, watches DOM mutations during the switch), so new pages need
+  nothing extra. Inline `Code` only fades (transforms don't apply to inline elements).
 - Anything else that differs per framework (an install command, a file name, a sentence) uses
   `forFramework({ svelte, react })` in the template. `installCommand()` / `packageName()` give the Moth package.
 - Things that are the same in both (CSS snippets, tokens, HTML like `<html data-theme>`) stay plain strings; pass

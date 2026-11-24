@@ -81,7 +81,7 @@ export default function Example() {
         },
         {
             title: "Glows in the dark. Shines in the light.",
-            body: "Both themes are designed token by token, not inverted.",
+            body: "Dark and light mode out of the box, each designed token by token instead of inverted.",
             icon: `<circle cx="12" cy="12" r="10"/><path d="M12 18a6 6 0 0 0 0-12v12z"/>`
         },
         {
@@ -179,7 +179,7 @@ export default function Example() {
             <div class="section-head">
                 <Text size="3xl" weight="black" as="h2">Up and running in three steps</Text>
                 <Text size="l" variant="weak" measure="m">
-                    No config generators, no theme providers. <a class="inline-link" href="/getting-started">Read the full guide →</a>
+                    No config generators, no theme providers. <Link size="l" href="/getting-started">Read the full guide&nbsp;→</Link>
                 </Text>
             </div>
             <ol class="steps">
@@ -223,7 +223,7 @@ export default function Example() {
                             {@html component.example}
                         </div>
                         <div class="showcase-label">
-                            <Text weight="bold" size="l">{component.name}</Text>
+                            <Text weight="bold" size="l">{component.label ?? component.name}</Text>
                             <span class="arrow" aria-hidden="true">→</span>
                         </div>
                     </a>
@@ -399,16 +399,6 @@ export default function Example() {
         display: flex;
         flex-direction: column;
         gap: var(--m-space-s);
-    }
-
-    .inline-link {
-        color: var(--m-color-text);
-        text-decoration: none;
-        white-space: nowrap;
-    }
-
-    .inline-link:hover {
-        text-decoration: underline;
     }
 
     /* Features */

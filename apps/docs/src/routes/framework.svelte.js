@@ -94,3 +94,46 @@ export function loadFramework() {
         if (localStorage.getItem(STORAGE_KEY) === "react") framework.current = "react";
     } catch {}
 }
+
+// --- Switch animation ---
+
+/**
+ * Replays the tab panel's ease-in (`m-tab-panel-in`) on every piece of code that changes when the framework
+ * switches: code examples, one-line commands, inline `Code` in prose and API tables. It watches the DOM during the
+ * switch and animates the `<code>` elements whose content changed, so code that's the same in both frameworks
+ * (e.g. CSS) stays still and new pages need nothing extra. Not on first render. Off with prefers-reduced-motion
+ * (the `.is-framework-switched` rule in +layout.svelte). Call once, from the root layout's script.
+ */
+export function animateCodeOnSwitch() {
+    let previous = framework.current;
+    // .pre: start watching before the DOM updates for the new framework
+    $effect.pre(() => {
+        if (framework.current === previous) return;
+        previous = framework.current;
+
+        /** @type { Set<Element> } */
+        const changed = new Set();
+        /** @param { MutationRecord[] } mutations */
+        const collect = (mutations) => {
+            for (const mutation of mutations) {
+                const target = mutation.target instanceof Element ? mutation.target : mutation.target.parentElement;
+                const code = target?.closest("code");
+                if (code) changed.add(code);
+            }
+        };
+        const observer = new MutationObserver(collect);
+        observer.observe(document.body, { subtree: true, childList: true, characterData: true });
+
+        // Code examples highlight in their own effects after the update, so wait a frame to catch those too
+        requestAnimationFrame(() => {
+            collect(observer.takeRecords());
+            observer.disconnect();
+            for (const code of changed) {
+                // Restart the animation even if the last one is still running
+                code.classList.remove("is-framework-switched");
+                void (/** @type { HTMLElement } */ (code).offsetWidth);
+                code.classList.add("is-framework-switched");
+            }
+        });
+    });
+}
