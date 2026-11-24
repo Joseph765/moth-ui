@@ -73,7 +73,7 @@
             {#snippet icon(animate)}<Blocks {animate} />{/snippet}
             <NavGroupItem href="/components" active={page.url.pathname === "/components"} onclick={() => open = false}>All Components</NavGroupItem>
             {#each components as component}
-                <NavGroupItem href="/components/{component.name.toLocaleLowerCase()}" active={page.url.pathname === '/components/' + component.name.toLocaleLowerCase()} onclick={() => open = false}>{component.name}</NavGroupItem>
+                <NavGroupItem href="/components/{component.name.toLocaleLowerCase()}" active={page.url.pathname === '/components/' + component.name.toLocaleLowerCase()} onclick={() => open = false}>{component.label ?? component.name}</NavGroupItem>
             {/each}
         </NavGroup>
         {#snippet footer()}

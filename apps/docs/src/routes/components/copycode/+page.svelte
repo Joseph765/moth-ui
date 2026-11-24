@@ -31,7 +31,7 @@ export default function Example() {
 
 <Flex direction="column" gap="2xl">
     <Flex direction="column">
-        <Text size="3xl" weight="black" as="h1">CopyCode</Text>
+        <Text size="3xl" weight="black" as="h1">Copy Code</Text>
         <Text size="xl" variant="weak">
             A single line of code, like an install command, with a button that copies it to the clipboard.
             For multi-line snippets, use a code block instead.

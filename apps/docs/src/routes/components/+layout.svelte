@@ -14,7 +14,7 @@
 
 {#if component}
     <Seo
-        title="{component.name} · Svelte and React component · Moth UI"
+        title="{component.label ?? component.name} · Svelte and React component · Moth UI"
         description={component.description}
         path={page.url.pathname}
     />

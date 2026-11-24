@@ -223,7 +223,7 @@ export default function Example() {
                             {@html component.example}
                         </div>
                         <div class="showcase-label">
-                            <Text weight="bold" size="l">{component.name}</Text>
+                            <Text weight="bold" size="l">{component.label ?? component.name}</Text>
                             <span class="arrow" aria-hidden="true">→</span>
                         </div>
                     </a>
