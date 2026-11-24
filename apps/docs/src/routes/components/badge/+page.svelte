@@ -151,6 +151,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -158,16 +159,19 @@ export default function Example() {
                     <TableCell><Code>variant</Code></TableCell>
                     <TableCell>The style of the badge indicating status.</TableCell>
                     <TableCell><Code>neutral</Code> | <Code>danger</Code> | <Code>warning</Code> | <Code>success</Code> | <Code>info</Code></TableCell>
+                    <TableCell><Code>neutral</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>strong</Code></TableCell>
                     <TableCell>More prominate secondary style for badges.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>icon</Code></TableCell>
                     <TableCell>An icon shown before the label.</TableCell>
                     <TableCell><Code>{slotType()}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

@@ -269,38 +269,39 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
                 <TableRow>
-                    <TableCell><Code>onDismiss</Code></TableCell>
-                    <TableCell>Executes a function when the dismiss button is clicked.</TableCell>
-                    <TableCell><Code>{`() => void`}</Code></TableCell>
-                </TableRow>
-                <TableRow>
                     <TableCell><Code>id</Code></TableCell>
                     <TableCell>ID passed to the Toast component. Necessary for dismissable functionality.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>variant</Code></TableCell>
                     <TableCell>The style of the toast.</TableCell>
                     <TableCell><Code>default</Code> | <Code>danger</Code></TableCell>
+                    <TableCell><Code>default</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>dismissable</Code></TableCell>
-                    <TableCell>Shows a close button. Defaults to <Code>true</Code>.</TableCell>
+                    <TableCell>Shows a close button.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>true</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>onDismiss</Code></TableCell>
                     <TableCell>Called when the close button is clicked. Remove the toast from your list here.</TableCell>
                     <TableCell><Code>() =&gt; void</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>ToastGroup</Code></TableCell>
                     <TableCell>Wrap all toasts in one group. It stacks them in the corner and is a polite live region, so screen readers announce each new toast without interrupting.</TableCell>
                     <TableCell><Code>component</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

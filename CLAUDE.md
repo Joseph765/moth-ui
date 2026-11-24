@@ -126,7 +126,10 @@ an example, and nothing extra.
      "Sizes", "With icon", "Disabled", "Full width", "Link") with an `id`, one or two sentences on when and how to
      use it, then its `CodeExample`. The first section is the basic one (for Button, the four variants).
      Component-specific usage guidance goes in these sentences, not in Guidelines or a separate Usage section.
-  3. **API reference** (`h2`, `id="api-reference"`): the props table.
+  3. **API reference** (`h2`, `id="api-reference"`): the props table. The Default column takes the value from the
+     source (same in both packages): enum values bare (`m`), free-text strings quoted (`"Theme"`), booleans
+     `false`/`true`, "Same as `name`" for field ids, and "—" when there's none (required props, empty-string
+     defaults, snippets, callbacks). Don't repeat the default in the description.
   - Every component page follows this (Button was the model). Pages without props (Code, Divider) have no API
     reference. All examples render at once, so radios in different sections need different `name`s (e.g.
     `testRadio-hint`) and ids must be unique across the page; the code strings can keep simple names.
@@ -187,7 +190,7 @@ We're simplifying the documentation site. Goals so far:
   - Code highlighting: `packages/css/src/highlight.css`.
 - **Docs component pages** (`src/routes/components/<name>/+page.svelte`):
   - Layout: an `h1` title (`<Text size="3xl" weight="black" as="h1">`), one `h2` section per example (short copy +
-    `CodeExample`), then "API reference" with the props table (Property / Description / Type). See "How the docs
+    `CodeExample`), then "API reference" with the props table (Property / Description / Type / Default). See "How the docs
     site is laid out"; Button is the model.
   - Table rows: props first, then snippets (Type `{slotType()}`), then callback props (Type `function`, name
     `{eventName("onclick")}`). See "Code examples in both frameworks" for the switching helpers. Pages covering several components prefix the name, e.g. `TableCell align`.

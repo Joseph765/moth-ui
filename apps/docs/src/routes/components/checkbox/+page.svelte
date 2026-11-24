@@ -171,6 +171,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -178,36 +179,43 @@ export default function Example() {
                     <TableCell><Code>name</Code></TableCell>
                     <TableCell>Applies the name attribute to the checkbox input.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>checked</Code></TableCell>
                     <TableCell>Whether the checkbox is checked. <ForFramework>{#snippet svelte()}Use <Code>bind:checked</Code> to read and update it.{/snippet}{#snippet react()}Pair it with <Code>onChange</Code> to control it, or use <Code>defaultChecked</Code> for a starting value.{/snippet}</ForFramework></TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>disabled</Code></TableCell>
                     <TableCell>Prevents interaction.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>indeterminate</Code></TableCell>
                     <TableCell>Changes the state of the checkbox to indeterminate.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>label</Code></TableCell>
                     <TableCell>Adds a label above the checkbox.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>error</Code></TableCell>
                     <TableCell>Adds an error message below the checkbox.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>hint</Code></TableCell>
                     <TableCell>Adds a hint below the checkbox.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

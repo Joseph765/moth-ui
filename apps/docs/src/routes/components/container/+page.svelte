@@ -211,6 +211,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -218,21 +219,25 @@ export default function Example() {
                     <TableCell><Code>space</Code></TableCell>
                     <TableCell>Changes the padding applied to the container.</TableCell>
                     <TableCell><Code>default</Code> | <Code>none</Code></TableCell>
+                    <TableCell><Code>default</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>size</Code></TableCell>
                     <TableCell>Changes the maximum width of the container.</TableCell>
                     <TableCell><Code>s</Code> | <Code>m</Code> | <Code>l</Code> | <Code>xl</Code> | <Code>2xl</Code></TableCell>
+                    <TableCell><Code>2xl</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>align</Code></TableCell>
                     <TableCell>Determines which direction the container is aligned.</TableCell>
                     <TableCell><Code>start</Code> | <Code>center</Code> | <Code>end</Code></TableCell>
+                    <TableCell><Code>start</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>debug</Code></TableCell>
                     <TableCell>Adds a red outline to the container.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
             </TableBody>
         </Table>

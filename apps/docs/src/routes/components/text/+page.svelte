@@ -313,6 +313,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -320,46 +321,55 @@ export default function Example() {
                     <TableCell><Code>size</Code></TableCell>
                     <TableCell>Determines the size of the text.</TableCell>
                     <TableCell><Code>xs</Code> | <Code>s</Code> | <Code>m</Code> | <Code>l</Code> | <Code>xl</Code> | <Code>2xl</Code> | <Code>3xl</Code></TableCell>
+                    <TableCell><Code>m</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>weight</Code></TableCell>
                     <TableCell>Determines the boldness of the text.</TableCell>
-                    <TableCell><Code>regular</Code> | <Code>Bold</Code> | <Code>black</Code></TableCell>
+                    <TableCell><Code>regular</Code> | <Code>bold</Code> | <Code>black</Code></TableCell>
+                    <TableCell><Code>regular</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>variant</Code></TableCell>
                     <TableCell>Changes the color of the text to be more or less prominate.</TableCell>
                     <TableCell><Code>default</Code> | <Code>weak</Code> | <Code>weaker</Code> | <Code>weakest</Code></TableCell>
+                    <TableCell><Code>default</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>as</Code></TableCell>
                     <TableCell>Changes the html element rendered.</TableCell>
                     <TableCell><Code>p</Code> | <Code>span</Code> | <Code>h1</Code> | <Code>h2</Code> | <Code>h3</Code> | <Code>h4</Code> | <Code>h5</Code> | <Code>h6</Code></TableCell>
+                    <TableCell><Code>p</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>measure</Code></TableCell>
                     <TableCell>Sets the maximum width of the paragram text.</TableCell>
                     <TableCell><Code>none</Code> | <Code>s</Code> | <Code>m</Code> | <Code>l</Code></TableCell>
+                    <TableCell><Code>m</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>mono</Code></TableCell>
                     <TableCell>Displays the mono font. Used specifically for code snippets and examples.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>align</Code></TableCell>
                     <TableCell>Text alignment. When omitted, follows its container (e.g. <Code>TableCell align</Code>).</TableCell>
                     <TableCell><Code>start</Code> | <Code>center</Code> | <Code>end</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>id</Code></TableCell>
                     <TableCell>Id for the text element, for example to use as a link anchor.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>{forFramework({ svelte: "class", react: "className" })}</Code></TableCell>
                     <TableCell>Extra classes added to the element, for your own styles.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

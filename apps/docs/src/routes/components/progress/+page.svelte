@@ -94,6 +94,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -101,16 +102,19 @@ export default function Example() {
                     <TableCell><Code>label</Code></TableCell>
                     <TableCell>What the progress is for, shown above the bar. Also the bar's accessible name. Required.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>value</Code></TableCell>
                     <TableCell>How far along it is, from 0 to <Code>max</Code>. Values outside that range are clamped. Required.</TableCell>
                     <TableCell><Code>number</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>max</Code></TableCell>
-                    <TableCell>The value that means done. Defaults to 100.</TableCell>
+                    <TableCell>The value that means done.</TableCell>
                     <TableCell><Code>number</Code></TableCell>
+                    <TableCell><Code>100</Code></TableCell>
                 </TableRow>
             </TableBody>
         </Table>

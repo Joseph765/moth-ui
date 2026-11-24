@@ -123,6 +123,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -130,21 +131,25 @@ export default function Example() {
                     <TableCell><Code>tabs</Code></TableCell>
                     <TableCell>Determines the list of tabs with specific labels and IDs.</TableCell>
                     <TableCell><Code>{`{ id: string, label: string }[]`}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>onClick</Code></TableCell>
                     <TableCell>Provides a callback function to set the selected tab when a tab is clicked.</TableCell>
                     <TableCell><Code>{`(id: string) => string`}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>selected</Code></TableCell>
                     <TableCell>Provides the current selected tab.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>id</Code></TableCell>
                     <TableCell>The id of its tab in the list of tabs. The panel gets <Code>panel-</Code> plus this id, which its tab points at.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

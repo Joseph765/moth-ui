@@ -109,6 +109,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -116,11 +117,13 @@ export default function Example() {
                     <TableCell><Code>required</Code></TableCell>
                     <TableCell>Adds a red asterisk to the label for required fields.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>label</Code></TableCell>
                     <TableCell>Legend text that names the group of fields. Required.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

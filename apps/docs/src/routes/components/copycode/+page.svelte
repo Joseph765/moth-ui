@@ -56,6 +56,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -63,11 +64,13 @@ export default function Example() {
                     <TableCell><Code>code</Code></TableCell>
                     <TableCell>The code to show and copy. Required.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>style</Code></TableCell>
                     <TableCell>Inline styles for the wrapper, for example to change its background on a surface.</TableCell>
                     <TableCell><Code>{forFramework({ svelte: "string", react: "CSSProperties" })}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

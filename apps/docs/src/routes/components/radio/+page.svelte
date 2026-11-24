@@ -299,6 +299,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -306,11 +307,13 @@ export default function Example() {
                     <TableCell><Code>label</Code></TableCell>
                     <TableCell>Adds a label beside the radio button.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>name</Code></TableCell>
                     <TableCell>Groups radios together: give every radio in a set the same name.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>checked</Code></TableCell>
@@ -321,31 +324,37 @@ export default function Example() {
                         </ForFramework>
                     </TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>disabled</Code></TableCell>
                     <TableCell>Prevents interaction.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>hint</Code></TableCell>
                     <TableCell>Adds a hint below the radio button.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>error</Code></TableCell>
                     <TableCell>Adds an error message below the radio button.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>id</Code></TableCell>
                     <TableCell>Unique id that connects the radio to its label. Required.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>value</Code></TableCell>
                     <TableCell>The value submitted with the form when this radio is selected.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <!-- React has no group binding: radios are controlled with checked + onChange -->
                 <ForFramework>
@@ -354,6 +363,7 @@ export default function Example() {
                             <TableCell><Code>bind:group</Code></TableCell>
                             <TableCell>Binds a variable to the whole set: put it on every radio in the set, and it holds the checked radio's <Code>value</Code>.</TableCell>
                             <TableCell><Code>string</Code></TableCell>
+                            <TableCell>—</TableCell>
                         </TableRow>
                     {/snippet}
                 </ForFramework>
@@ -361,6 +371,7 @@ export default function Example() {
                     <TableCell><Code>{eventName("onchange")}</Code></TableCell>
                     <TableCell>Fires when the user selects this radio.</TableCell>
                     <TableCell><Code>function</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

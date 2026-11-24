@@ -69,6 +69,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -76,6 +77,7 @@ export default function Example() {
                     <TableCell><Code>variant</Code></TableCell>
                     <TableCell>The style of the banner indicating status.</TableCell>
                     <TableCell><Code>info</Code> | <Code>danger</Code> | <Code>warning</Code> | <Code>success</Code></TableCell>
+                    <TableCell><Code>info</Code></TableCell>
                 </TableRow>
             </TableBody>
         </Table>

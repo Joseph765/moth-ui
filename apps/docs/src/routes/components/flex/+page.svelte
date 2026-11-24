@@ -429,6 +429,7 @@ export default function Example() {
                         <TableHeader>Property</TableHeader>
                         <TableHeader>Description</TableHeader>
                         <TableHeader>Type</TableHeader>
+                        <TableHeader>Default</TableHeader>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -436,21 +437,25 @@ export default function Example() {
                         <TableCell><Code>direction</Code></TableCell>
                         <TableCell>Defines the direction flex items are placed in the flex container.</TableCell>
                         <TableCell><Code>row</Code> | <Code>column</Code> | <Code>row-reverse</Code> | <Code>column-reverse</Code></TableCell>
+                        <TableCell><Code>row</Code></TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell><Code>gap</Code></TableCell>
                         <TableCell>Defined the space between flex items.</TableCell>
                         <TableCell><Code>none</Code> | <Code>xs</Code> | <Code>s</Code> | <Code>m</Code> | <Code>l</Code> | <Code>xl</Code> | <Code>2xl</Code></TableCell>
+                        <TableCell><Code>m</Code></TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell><Code>wrap</Code></TableCell>
                         <TableCell>Allows the items to wrap as needed.</TableCell>
                         <TableCell><Code>boolean</Code></TableCell>
+                        <TableCell><Code>false</Code></TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell><Code>justify</Code></TableCell>
                         <TableCell>Defines the alignment along the main axis.</TableCell>
                         <TableCell><Code>start</Code> | <Code>end</Code> | <Code>flex-start</Code> | <Code>flex-end</Code> | <Code>center</Code> | <Code>between</Code> | <Code>around</Code> |  <Code>evenly</Code></TableCell>
+                        <TableCell><Code>start</Code></TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell><Code>align</Code></TableCell>
@@ -460,6 +465,7 @@ export default function Example() {
                                 <Code>initial</Code> | <Code>stretch</Code> | <Code>flex-start</Code> | <Code>flex-end</Code> | <Code>center</Code> | <Code>baseline</Code> | <Code>start</Code> |  <Code>end</Code> | <Code>self-start</Code> | <Code>self-end</Code>
                             </Flex>
                         </TableCell>
+                        <TableCell><Code>initial</Code></TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

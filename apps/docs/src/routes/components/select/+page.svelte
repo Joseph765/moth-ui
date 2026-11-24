@@ -472,6 +472,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -479,71 +480,85 @@ export default function Example() {
                     <TableCell><Code>label</Code></TableCell>
                     <TableCell>Adds a label above the select element.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>placeholder</Code></TableCell>
                     <TableCell>Provides a subtle hint within the select.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell><Code>"Select an option..."</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>options</Code></TableCell>
                     <TableCell>Specifies the list of options availble in the select.</TableCell>
                     <TableCell><Code>{`{ value: string, label: string }[]`}</Code></TableCell>
+                    <TableCell><Code>[]</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>name</Code></TableCell>
                     <TableCell>Sets the name HTML attribute to the select element.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>id</Code></TableCell>
-                    <TableCell>The field's id, which its label points at. Defaults to <Code>name</Code>.</TableCell>
+                    <TableCell>The field's id, which its label points at.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>Same as <Code>name</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>expanded</Code></TableCell>
                     <TableCell>Allows the select element to stretch to full width.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>required</Code></TableCell>
                     <TableCell>Makes the input a required field and styles the label with a red asterisk.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>disabled</Code></TableCell>
                     <TableCell>Prevents interaction.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>error</Code></TableCell>
                     <TableCell>Adds an error message below the select.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>hint</Code></TableCell>
                     <TableCell>Adds a hint below the select.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>autocomplete</Code></TableCell>
                     <TableCell>Whether the browser may autofill the field.</TableCell>
                     <TableCell><Code>on</Code> | <Code>off</Code></TableCell>
+                    <TableCell><Code>off</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>prefix</Code></TableCell>
                     <TableCell>Content shown inside the field before the selected option, such as an icon.</TableCell>
                     <TableCell><Code>{slotType()}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>suffix</Code></TableCell>
                     <TableCell>Content shown inside the field after the selected option.</TableCell>
                     <TableCell><Code>{slotType()}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>value</Code></TableCell>
                     <TableCell>The selected option's value. <ForFramework>{#snippet svelte()}Use <Code>bind:value</Code> to read and update it.{/snippet}{#snippet react()}Pair it with <Code>onChange</Code> to control it, or use <Code>defaultValue</Code> for a starting value.{/snippet}</ForFramework></TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

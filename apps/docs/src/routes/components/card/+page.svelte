@@ -161,6 +161,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -168,16 +169,19 @@ export default function Example() {
                     <TableCell><Code>space</Code></TableCell>
                     <TableCell>The amount of padding applied to the card.</TableCell>
                     <TableCell><Code>none</Code> | <Code>m</Code> | <Code>l</Code></TableCell>
+                    <TableCell><Code>m</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>header</Code></TableCell>
                     <TableCell>Content for the card header, shown above a divider.</TableCell>
                     <TableCell><Code>{slotType()}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>headerEnd</Code></TableCell>
                     <TableCell>Content aligned to the end of the header, such as an action button.</TableCell>
                     <TableCell><Code>{slotType()}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

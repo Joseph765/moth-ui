@@ -339,6 +339,7 @@ export default function AppLayout({ pathname, children }) {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -346,51 +347,61 @@ export default function AppLayout({ pathname, children }) {
                     <TableCell><Code>LayoutNav open</Code></TableCell>
                     <TableCell>Slides the navigation in on screens narrower than 66rem (1056px) and blurs the page content behind it. The sidebar is always shown on larger screens.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>LayoutNav label</Code></TableCell>
-                    <TableCell>Accessible name for the navigation landmark. Defaults to "Main".</TableCell>
+                    <TableCell>Accessible name for the navigation landmark.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell><Code>"Main"</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>LayoutNav {eventName("onclose")}</Code></TableCell>
                     <TableCell>Fires when the user presses Esc, clicks the blurred page outside the navigation, or clicks a link in the header (such as the logo) while it is open. Set <Code>open</Code> to false in response. On Esc, focus moves back to the menu button if it was inside the navigation.</TableCell>
                     <TableCell><Code>function</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>LayoutNav footer</Code></TableCell>
                     <TableCell>Global actions pinned to the bottom of the navigation, below a divider, such as the signed-in user, settings or a theme switcher. The items above it scroll on their own.</TableCell>
                     <TableCell><Code>{slotType()}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>LayoutMenuButton open</Code></TableCell>
                     <TableCell>Reflects whether the navigation is open so screen readers announce it (<Code>aria-expanded</Code>).</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>LayoutMenuButton {eventName("onclick")}</Code></TableCell>
                     <TableCell>Fires when the menu button is pressed. Toggle <Code>open</Code> in response.</TableCell>
                     <TableCell><Code>function</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>Layout logo</Code></TableCell>
                     <TableCell>Logo shown above the sidebar on larger screens.</TableCell>
                     <TableCell><Code>{slotType()}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>LayoutHeader mobileLogo</Code></TableCell>
                     <TableCell>Logo centered in the header on smaller screens.</TableCell>
                     <TableCell><Code>{slotType()}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>NavItem icon</Code></TableCell>
                     <TableCell>Icon before the label. {forFramework({ svelte: "Receives", react: "As a function, it receives" })} <Code>animate</Code>, which is true while the item is hovered or keyboard-focused, so animated icons play for the whole row. Also available on <Code>NavGroupItem</Code>.</TableCell>
                     <TableCell><Code>{slotType({ name: "animate", type: "boolean" })}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>NavGroup icon</Code></TableCell>
                     <TableCell>Rendered before the group title. {forFramework({ svelte: "Receives", react: "As a function, it receives" })} the same <Code>animate</Code> flag.</TableCell>
                     <TableCell><Code>{slotType({ name: "animate", type: "boolean" })}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

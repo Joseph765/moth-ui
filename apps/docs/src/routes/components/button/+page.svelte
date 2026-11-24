@@ -258,6 +258,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -265,41 +266,49 @@ export default function Example() {
                     <TableCell><Code>variant</Code></TableCell>
                     <TableCell>The style of the button based on level of importance. Danger is for destructive actions.</TableCell>
                     <TableCell><Code>primary</Code> | <Code>secondary</Code> | <Code>tertiary</Code> | <Code>danger</Code></TableCell>
+                    <TableCell><Code>primary</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>disabled</Code></TableCell>
                     <TableCell>Prevents interaction.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>size</Code></TableCell>
                     <TableCell>Allows for a larger button style.</TableCell>
                     <TableCell><Code>m</Code> | <Code>l</Code></TableCell>
+                    <TableCell><Code>m</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>expanded</Code></TableCell>
                     <TableCell>Allows the button to stretch to full width.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>href</Code></TableCell>
                     <TableCell>Allows the button to behave like a link.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>start</Code></TableCell>
                     <TableCell>Content placed before the label, usually an icon.</TableCell>
                     <TableCell><Code>{slotType()}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>end</Code></TableCell>
                     <TableCell>Content placed after the label, usually an icon.</TableCell>
                     <TableCell><Code>{slotType()}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>{eventName("onclick")}</Code></TableCell>
                     <TableCell>Fires when the button (or link) is clicked.</TableCell>
                     <TableCell><Code>function</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

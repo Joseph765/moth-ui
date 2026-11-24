@@ -82,6 +82,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -89,11 +90,13 @@ export default function Example() {
                     <TableCell><Code>NavItem href</Code></TableCell>
                     <TableCell>Where the item links to. Required.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>NavItem active</Code></TableCell>
                     <TableCell>Marks the item as the current page (sets <Code>aria-current</Code>).</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <ForFramework>
                     {#snippet react()}
@@ -101,6 +104,7 @@ export default function Example() {
                             <TableCell><Code>NavItem as</Code></TableCell>
                             <TableCell>Your router's link component, rendered instead of <Code>&lt;a&gt;</Code> for client-side navigation. It receives <Code>href</Code>; for React Router, wrap <Code>Link</Code> to pass it on as <Code>to</Code>.</TableCell>
                             <TableCell><Code>ElementType</Code></TableCell>
+                            <TableCell><Code>"a"</Code></TableCell>
                         </TableRow>
                     {/snippet}
                 </ForFramework>
@@ -108,36 +112,43 @@ export default function Example() {
                     <TableCell><Code>NavItem icon</Code></TableCell>
                     <TableCell>Icon before the label. {forFramework({ svelte: "Receives", react: "As a function, it receives" })} <Code>animate</Code>, true while the item is hovered or keyboard-focused.</TableCell>
                     <TableCell><Code>{slotType({ name: "animate", type: "boolean" })}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>NavItem {eventName("onclick")}</Code></TableCell>
                     <TableCell>Fires when the item is clicked, for example to close the mobile menu.</TableCell>
                     <TableCell><Code>function</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>NavGroup title</Code></TableCell>
                     <TableCell>Heading of the collapsible group. Required.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>NavGroup open</Code></TableCell>
-                    <TableCell>Whether the group starts expanded. Defaults to <Code>true</Code>.</TableCell>
+                    <TableCell>Whether the group starts expanded.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>true</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>NavGroup icon</Code></TableCell>
                     <TableCell>Rendered before the title. {forFramework({ svelte: "Receives", react: "As a function, it receives" })} the same <Code>animate</Code> flag.</TableCell>
                     <TableCell><Code>{slotType({ name: "animate", type: "boolean" })}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>NavGroupItem href</Code></TableCell>
                     <TableCell>Where the item links to. Required.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>NavGroupItem active</Code></TableCell>
                     <TableCell>Marks the item as the current page (sets <Code>aria-current</Code>).</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <ForFramework>
                     {#snippet react()}
@@ -145,6 +156,7 @@ export default function Example() {
                             <TableCell><Code>NavGroupItem as</Code></TableCell>
                             <TableCell>Your router's link component, rendered instead of <Code>&lt;a&gt;</Code> for client-side navigation. It receives <Code>href</Code>; for React Router, wrap <Code>Link</Code> to pass it on as <Code>to</Code>.</TableCell>
                             <TableCell><Code>ElementType</Code></TableCell>
+                            <TableCell><Code>"a"</Code></TableCell>
                         </TableRow>
                     {/snippet}
                 </ForFramework>
@@ -152,11 +164,13 @@ export default function Example() {
                     <TableCell><Code>NavGroupItem icon</Code></TableCell>
                     <TableCell>Optional icon before the label. {forFramework({ svelte: "Receives", react: "As a function, it receives" })} <Code>animate</Code>.</TableCell>
                     <TableCell><Code>{slotType({ name: "animate", type: "boolean" })}</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>NavGroupItem {eventName("onclick")}</Code></TableCell>
                     <TableCell>Fires when the item is clicked.</TableCell>
                     <TableCell><Code>function</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

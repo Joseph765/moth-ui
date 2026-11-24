@@ -122,23 +122,27 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
                 <TableRow>
                     <TableCell><Code>storageKey</Code></TableCell>
-                    <TableCell>The <Code>localStorage</Code> key the choice is saved under. Defaults to <Code>moth-theme</Code>. An empty string turns saving off.</TableCell>
+                    <TableCell>The <Code>localStorage</Code> key the choice is saved under. An empty string turns saving off.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell><Code>"moth-theme"</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>label</Code></TableCell>
-                    <TableCell>Accessible name for the group of options. Defaults to "Theme".</TableCell>
+                    <TableCell>Accessible name for the group of options.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell><Code>"Theme"</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>{eventName("onchange")}</Code></TableCell>
                     <TableCell>Fires when someone picks an option, with <Code>system</Code>, <Code>light</Code> or <Code>dark</Code>.</TableCell>
                     <TableCell><Code>function</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

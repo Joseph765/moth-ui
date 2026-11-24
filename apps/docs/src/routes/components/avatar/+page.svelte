@@ -76,6 +76,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -83,11 +84,13 @@ export default function Example() {
                     <TableCell><Code>name</Code></TableCell>
                     <TableCell>The person's name. Its first letter is shown when there's no photo, and it's the accessible name. Required.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>src</Code></TableCell>
                     <TableCell>URL of the person's photo. Falls back to the letter if it fails to load.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

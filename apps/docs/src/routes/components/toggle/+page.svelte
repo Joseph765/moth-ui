@@ -156,6 +156,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -163,36 +164,43 @@ export default function Example() {
                     <TableCell><Code>checked</Code></TableCell>
                     <TableCell>Whether the toggle is on. <ForFramework>{#snippet svelte()}Use <Code>bind:checked</Code> to read and update it.{/snippet}{#snippet react()}Pair it with <Code>onChange</Code> to control it, or use <Code>defaultChecked</Code> for a starting value.{/snippet}</ForFramework></TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>label</Code></TableCell>
                     <TableCell>Adds a label beside the toggle button.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>name</Code></TableCell>
                     <TableCell>Sets the input's name attribute.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>disabled</Code></TableCell>
                     <TableCell>Prevents interaction.</TableCell>
                     <TableCell><Code>boolean</Code></TableCell>
+                    <TableCell><Code>false</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>error</Code></TableCell>
                     <TableCell>Adds an error message below the toggle.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                  <TableRow>
                     <TableCell><Code>hint</Code></TableCell>
                     <TableCell>Adds a hint below the toggle.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>{eventName("onchange")}</Code></TableCell>
                     <TableCell>Fires when the toggle is switched.</TableCell>
                     <TableCell><Code>function</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

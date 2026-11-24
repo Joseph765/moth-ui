@@ -100,6 +100,7 @@ export default function Example() {
                     <TableHeader>Property</TableHeader>
                     <TableHeader>Description</TableHeader>
                     <TableHeader>Type</TableHeader>
+                    <TableHeader>Default</TableHeader>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -107,16 +108,19 @@ export default function Example() {
                     <TableCell><Code>size</Code></TableCell>
                     <TableCell>Sets the size of the link.</TableCell>
                     <TableCell><Code>xs</Code> | <Code>s</Code> | <Code>m</Code> | <Code>l</Code> | <Code>xl</Code> | <Code>2xl</Code> | <Code>3xl</Code></TableCell>
+                    <TableCell><Code>m</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>href</Code></TableCell>
                     <TableCell>Where the link goes.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell><Code>"#"</Code></TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell><Code>target</Code></TableCell>
                     <TableCell>Where to open the link. <Code>_blank</Code> opens a new tab and adds <Code>rel="noopener noreferrer"</Code> automatically.</TableCell>
                     <TableCell><Code>string</Code></TableCell>
+                    <TableCell>—</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
